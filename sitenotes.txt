@@ -1,0 +1,29 @@
+Notes:
+01/02/03
+
+http://www.megalan.net/member-signup.php?p=adduser
+After user signs up for the site it says:
+Some of the information you have provided has caused an error in our site
+Congratulations you have signed up
+
+Perfect scenario: It says: Congratulations you have signed up. Welcome to Megalan.net.
+
+[Around 4 seconds later it forwards you back to homepage]
+---------------------------------------------
+
+http://www.megalan.net/event-signup.php
+
+* All LAN Party disclaimers must be signed and included with event fee. 
+
+Can you link the "LAN party disclaimers" to the disclaimer page. target blank.
+-----------------------------------------------
+All the network monkey children pages need to have the correct title in their headline bar thingy
+
+-------------------------------------------------
+Change [index.php] where it says: "Latest News and Columns" to "Latest Submissions"
+-------------------------------------------------
+Admin page:
+Post new news item
+Edit News item
+Delete Shout box submission
+Upload pics to gallaries
