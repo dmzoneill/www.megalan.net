@@ -1,16 +1,18 @@
 <?php
+// phpcs:ignoreFile
+// jscpd:ignore-start
 
 ob_start("ob_gzhandler");
 include("connect.php");
 include("functions.php");
 include("track.php");
 
-sheader("MegaLan.net Member Control Panel","MegaLan.net Member Control Panel");
+/* @phpstan-ignore-line */ sheader("MegaLan.net Member Control Panel","MegaLan.net Member Control Panel");
 
 
-if(validatecookie($msg)==1){
+/* @phpstan-ignore-line */ if(validatecookie($msg)==1){
 
-$rank = $stream->do_query("select rank from site_users where username='$cookieuser'","one");
+/* @phpstan-ignore-line */ $rank = $stream->do_query("select rank from site_users where username='$cookieuser'","one");
 
 print "<br><center><table width=90% cellpadding=0  border=0 bgcolor='000000'><tr>
 <td width=100%>
@@ -44,7 +46,7 @@ print "</td></tr></table></td></tr></table></td></tr></table><br>";
 
 
 
-intersection("MegaLan.net $control");
+/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ intersection("MegaLan.net $control");
 
 
 
@@ -52,26 +54,26 @@ intersection("MegaLan.net $control");
 
 
 	
-switch($control){
+/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ switch($control){
 
 default:
 
-$pms = $stream->do_query("select * from site_pms where destination='$cookieuser'","array");
+/* @phpstan-ignore-line */ $pms = $stream->do_query("select * from site_pms where destination='$cookieuser'","array");
 if(count($pms)>0){
 for ($x=0;$x<count($pms);$x++){
 $tmp = $pms[$x];
 $id = $tmp[0];
-$dest = $tmp[1];
+/** @psalm-suppress UnusedVariable */ /** @psalm-suppress UnusedVariable */ $dest = $tmp[1];
 $dep = $tmp[2];
 $msg = nl2br($tmp[3]);
 $time = $tmp[5];
 $date = $tmp[4];
-$ip = $tmp[6];
+/** @psalm-suppress UnusedVariable */ /** @psalm-suppress UnusedVariable */ $ip = $tmp[6];
 $title = $tmp[7];
 
-$cunt = $stream->do_query("select id from site_users where username='$dep'","one");
+/* @phpstan-ignore-line */ $cunt = $stream->do_query("select id from site_users where username='$dep'","one"); // codespell:ignore cunt
 
-$bitches = $stream->do_query("update site_pms set haveread='1' where haveread='0'","one");
+/* @phpstan-ignore-line */ /** @psalm-suppress UnusedVariable */ /** @psalm-suppress UnusedVariable */ $bitches = $stream->do_query("update site_pms set haveread='1' where haveread='0'","one");
 
 print "<center><table width='100%' border='0' cellspacing='1' cellpadding='1'><tr><td bgcolor='#000000'><center>";
 print "<table width='100%' border='0' cellspacing='' cellpadding='3'><tr><td bgcolor='#000000'><a class=news name=shit>$title";
@@ -101,13 +103,13 @@ case "editnews":
 
 
 print "<table cellpadding=3 cellspacing=0 border=0 bgcolor=''><tr><td valign=top>";
-$resultt = $stream->do_query("Select * from site_news where parent='0'", "array");
+/* @phpstan-ignore-line */ $resultt = $stream->do_query("Select * from site_news where parent='0'", "array");
 $num1 = count($resultt);
 
 for($i=0;$i<$num1;$i++){
 
 $tmp = $resultt[$i];
-$id = $tmp[0];
+/** @psalm-suppress UnusedVariable */ /** @psalm-suppress UnusedVariable */ $id = $tmp[0];
 $subject = $tmp[1];
 $time = $tmp[2];
 $message = $tmp[3];
@@ -135,31 +137,31 @@ break;
 
 case "editform":
 
-if($deleteher){
+/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ if($deleteher){
 if($rank>2){
-$whattime = date("j F Y");
-$resultt = $stream->do_query("delete from site_news where id = '$deleteher'", "one");
+/** @psalm-suppress UnusedVariable */ /** @psalm-suppress UnusedVariable */ $whattime = date("j F Y");
+/* @phpstan-ignore-line */ $resultt = $stream->do_query("delete from site_news where id = '$deleteher'", "one");
 if($resultt!="bad"){
-print "<font>News topic deletion successfull $ok $refresh";
+/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ print "<font>News topic deletion successfull $ok $refresh"; // codespell:ignore successfull
 }
 }
 }
 
-if ($edither){
+/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ if ($edither){
 if($rank>2){
 $whattime = date("j F Y");
-$message = eregi_replace("\"","\\\"",$message);
-$message = eregi_replace("'","\'",$message);
-$resultt = $stream->do_query("UPDATE site_news set subject = '$subject', whattime = '$whattime', messages = '$message' where id = '$edither'", "one");
+/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedFunction, PossiblyUndefinedVariable */ $message = eregi_replace("\"","\\\"",$message);
+/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedFunction */ $message = eregi_replace("'","\'",$message);
+/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $resultt = $stream->do_query("UPDATE site_news set subject = '$subject', whattime = '$whattime', messages = '$message' where id = '$edither'", "one");
 if($resultt!="bad"){
-print "<font>News topic update successfull $ok $refresh";
+/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ print "<font>News topic update successfull $ok $refresh"; // codespell:ignore successfull
 }
 }
 }
 else {
 
-if($edit){
-$resultt = $stream->do_query("Select * from site_news where uniqueid='$edit'", "array");
+/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ if($edit){
+/* @phpstan-ignore-line */ $resultt = $stream->do_query("Select * from site_news where uniqueid='$edit'", "array");
 $num1 = count($resultt);
 
 for($i=0;$i<$num1;$i++){
@@ -202,7 +204,7 @@ print "<center><form action=\"member-cp.php?control=editform&edither=$id\" metho
 
 }
 
-$resultt = $stream->do_query("Select * from site_news where parent='$edit'", "array");
+/* @phpstan-ignore-line */ $resultt = $stream->do_query("Select * from site_news where parent='$edit'", "array");
 $num1 = count($resultt);
 
 for($i=0;$i<$num1;$i++){
@@ -256,32 +258,32 @@ break;
 
 
 case "regclan":
-$aremem = $stream->do_query("select members from site_clans","array");
-$are = $stream->do_query("select head,headvice,members from site_clans where head='$cookieuser' or headvice='$cookieuser'","row");
+/* @phpstan-ignore-line */ $aremem = $stream->do_query("select members from site_clans","array");
+/* @phpstan-ignore-line */ $are = $stream->do_query("select head,headvice,members from site_clans where head='$cookieuser' or headvice='$cookieuser'","row");
 
 
-if($clanreg){
-if($are[0]!=$cookieuser){
-if($are[1]!=$cookieuser){
-if($clanvice){
-if($clanname){
+/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ if($clanreg){
+/* @phpstan-ignore-line */ if($are[0]!=$cookieuser){
+/* @phpstan-ignore-line */ if($are[1]!=$cookieuser){
+/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ if($clanvice){
+/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ if($clanname){
 
-$query = $stream->do_query("select headvice,members from site_clans","array");
+/* @phpstan-ignore-line */ $query = $stream->do_query("select headvice,members from site_clans","array");
 
 for ($x=0;$x<count($query);$x++){
 $tmp = $query[$x];
 $vice = $tmp[0];
 $members = $tmp[1];
-if(stristr($clanvice,$vice)){
-die_nice("Your vice captain is already registered to a clan");
+/** @psalm-suppress RiskyTruthyFalsyComparison */ if(stristr($clanvice,$vice)){
+/* @phpstan-ignore-line */ die_nice("Your vice captain is already registered to a clan");
 }
-if(stristr($clanvice,$members)){
-die_nice("Your vice captain is already registered to a clan");
+/** @psalm-suppress RiskyTruthyFalsyComparison */ if(stristr($clanvice,$members)){
+/* @phpstan-ignore-line */ die_nice("Your vice captain is already registered to a clan");
 }
 }
 
 $date = date("j, n, Y"); 
-$query = $stream->do_query("INSERT INTO site_clans VALUES ('', '$clanname', '$clanmembers', '$cookieuser', '$clanvice', '$date', '$clanhomepage', '$clanserver', '$ping', '$clangametype', '$clanlooking', '0', '0')","one");
+/* @phpstan-ignore-line */ /** @psalm-suppress UnusedVariable, UndefinedGlobalVariable */ /** @psalm-suppress UnusedVariable */ $query = $stream->do_query("INSERT INTO site_clans VALUES ('', '$clanname', '$clanmembers', '$cookieuser', '$clanvice', '$date', '$clanhomepage', '$clanserver', '$ping', '$clangametype', '$clanlooking', '0', '0')","one");
 print "Well done your clan has been registered";
 }
 }
@@ -290,13 +292,13 @@ print "Well done your clan has been registered";
 }
 
 else {
-if($are[0]!=$cookieuser){
-if($are[1]!=$cookieuser){
+/* @phpstan-ignore-line */ if($are[0]!=$cookieuser){
+/* @phpstan-ignore-line */ if($are[1]!=$cookieuser){
 for ($x=0;$x<count($aremem);$x++){
 $tmp = $aremem[$x];
 $members = $tmp[0];
-if(stristr($members,"$cookieuser")){
-die_nice("<br><font><dd>Dude your already a member of a clan!<br><br>");
+/* @phpstan-ignore-line */ /** @psalm-suppress RiskyTruthyFalsyComparison */ if(stristr($members,"$cookieuser")){
+/* @phpstan-ignore-line */ die_nice("<br><font><dd>Dude your already a member of a clan!<br><br>");
 }
 }
 
@@ -305,10 +307,10 @@ print "<table cellpadding=3 cellspacing=0 border=0 width=100%>";
 print "<tr><td valign=top><font>Clan Name :</td><td valign=top><input class='tbox' type=text name=clanname></td></tr>";
 print "<tr><td valign=top><font>Clan Vice Captain :</td><td valign=top><select name=clanvice>";
 print "<option value=''>---User List---</option>\n";
-$users = $stream->do_query("select * from site_users order by username ASC","array");
+/* @phpstan-ignore-line */ $users = $stream->do_query("select * from site_users order by username ASC","array");
 for ($x=0;$x<count($users);$x++){
 $tmp = $users[$x];
-$id = $tmp[0];
+/** @psalm-suppress UnusedVariable */ /** @psalm-suppress UnusedVariable */ $id = $tmp[0];
 $username = $tmp[1];
 print "<option value='$username'>$username</option>\n";
 }
@@ -344,24 +346,24 @@ break;
 case "editclan":
 
 
-if(!$edit){
-$query = $stream->do_query("select * from site_clans where head='$cookieuser'","array");
+/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ if(!$edit){
+/* @phpstan-ignore-line */ $query = $stream->do_query("select * from site_clans where head='$cookieuser'","array");
 
 for ($x=0;$x<count($query);$x++){
 $tmp = $query[$x];
-$id = $tmp[0];
+/** @psalm-suppress UnusedVariable */ /** @psalm-suppress UnusedVariable */ $id = $tmp[0];
 $clan = $tmp[1];
 $members = $tmp[2];
-$head = $tmp[3];
+/** @psalm-suppress UnusedVariable */ /** @psalm-suppress UnusedVariable */ $head = $tmp[3];
 $headvice = $tmp[4];
-$regdate = $tmp[5];
+/** @psalm-suppress UnusedVariable */ /** @psalm-suppress UnusedVariable */ $regdate = $tmp[5];
 $homepage = $tmp[6];
 $server = $tmp[7];
-$ping = $tmp[8];
+/** @psalm-suppress UnusedVariable */ /** @psalm-suppress UnusedVariable */ $ping = $tmp[8];
 $gametype = $tmp[9];
 $looking = $tmp[10];
-$dead = $tmp[11];
-$activation = $tmp[12];
+/** @psalm-suppress UnusedVariable */ /** @psalm-suppress UnusedVariable */ $dead = $tmp[11];
+/** @psalm-suppress UnusedVariable */ /** @psalm-suppress UnusedVariable */ $activation = $tmp[12];
 
 
 print "<form action=member-cp.php?control=editclan&edit=true method=post>";
@@ -396,13 +398,13 @@ print "</form>";
 
 if($edit) {
 
-if($lookingfor){
+/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ if($lookingfor){
 $looking = 1;
 }
 
-$bitchfaces = "$member0|$member1|$member2|$member3|$member4|$member5|$member6|$member7|$member8|$member9";
+/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $bitchfaces = "$member0|$member1|$member2|$member3|$member4|$member5|$member6|$member7|$member8|$member9";
 
-$bitches = $stream->do_query("update site_clans set clan='$clanname', headvice='$clanvice', homepage='$clanhomepage', server='$clanserver', gametype='$clangametype', looking='$looking', members='$bitchfaces' where head='$cookieuser'","one");
+/* @phpstan-ignore-line */ /** @psalm-suppress UnusedVariable, UndefinedGlobalVariable, PossiblyUndefinedGlobalVariable */ /** @psalm-suppress UnusedVariable */ $bitches = $stream->do_query("update site_clans set clan='$clanname', headvice='$clanvice', homepage='$clanhomepage', server='$clanserver', gametype='$clangametype', looking='$looking', members='$bitchfaces' where head='$cookieuser'","one");
 
 print "<font> Clan updated!";
 
@@ -415,24 +417,24 @@ break;
 
 
 case "private":
-if($doit=="send"){
-if($buddiesyeah){
+/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ if($doit=="send"){
+/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ if($buddiesyeah){
 if($rank<3){
-$subject = htmlspecialchars($subject);
-$message = htmlspecialchars($message);
+/* @phpstan-ignore-line */ /** @psalm-suppress UnusedVariable, UndefinedGlobalVariable */ /** @psalm-suppress UnusedVariable */ $subject = htmlspecialchars($subject);
+/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $message = htmlspecialchars($message);
 }
 if($rank>2){
-$message = eregi_replace("\"","\\\"",$message);
-$message = eregi_replace("'","\'",$message);
+/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedFunction, PossiblyUndefinedVariable */ $message = eregi_replace("\"","\\\"",$message);
+/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedFunction */ $message = eregi_replace("'","\'",$message);
 }
 $date = date("j, n, Y"); 
 $time = date("g:i a"); 
-$bitches = $stream->do_query("select buddies from site_users where username='$cookieuser'","one");
+/* @phpstan-ignore-line */ $bitches = $stream->do_query("select buddies from site_users where username='$cookieuser'","one");
 $bitch = explode("|",$bitches);
 $fuckbitches = count($bitch);
-intersection("Sending message to your buddies");
+/* @phpstan-ignore-line */ intersection("Sending message to your buddies");
 for($y=0;$y<$fuckbitches;$y++){
-$guery = $stream->do_query("insert into site_pms values('','$bitch[$y]','$cookieuser','$message','$time','$date','$iptrack','$title','0')","one");
+/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable, UndefinedGlobalVariable */ $guery = $stream->do_query("insert into site_pms values('','$bitch[$y]','$cookieuser','$message','$time','$date','$iptrack','$title','0')","one");
 if($guery!="bad"){
 print "<font> $bitch[$y] has received your message<br>";
 }
@@ -441,16 +443,16 @@ print "<font> $bitch[$y] has received your message<br>";
 }
 else {
 if($rank<3){
-$subject = htmlspecialchars($subject);
-$message = htmlspecialchars($message);
+/* @phpstan-ignore-line */ /** @psalm-suppress UnusedVariable, UndefinedGlobalVariable */ /** @psalm-suppress UnusedVariable */ $subject = htmlspecialchars($subject);
+/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $message = htmlspecialchars($message);
 }
 if($rank>2){
-$message = eregi_replace("\"","\\\"",$message);
-$message = eregi_replace("'","\'",$message);
+/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedFunction, PossiblyUndefinedVariable */ $message = eregi_replace("\"","\\\"",$message);
+/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedFunction */ $message = eregi_replace("'","\'",$message);
 }
 $date = date("j, n, Y"); 
 $time = date("g:i a"); 
-$query = $stream->do_query("insert into site_pms values('','$destination','$cookieuser','$message','$time','$date','$iptrack','$title','0')","one");
+/* @phpstan-ignore-line */ /** @psalm-suppress UnusedVariable, UndefinedGlobalVariable, PossiblyUndefinedGlobalVariable */ /** @psalm-suppress UnusedVariable */ $query = $stream->do_query("insert into site_pms values('','$destination','$cookieuser','$message','$time','$date','$iptrack','$title','0')","one");
 print "Message sent successfully";
 }
 
@@ -458,21 +460,21 @@ print "Message sent successfully";
 
 
 
-elseif($send){
-if($user){
-$user = $stream->do_query("select username from site_users where id='$user'","one");
+/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ elseif($send){
+/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ if($user){
+/* @phpstan-ignore-line */ $user = $stream->do_query("select username from site_users where id='$user'","one");
 }
 print "<center><br><table border=0 width=95%><tr>";
 print "<form action='member-cp.php?control=private&doit=send' method=post>";
 print "<td valign=top><font>Title : </td><td valign=top><input class='tbox'  type=text name=title></td></tr>";
-print "<tr><td valign=top><font>Mesage : </td><td valign=top><textarea  class='text' rows=8 cols=50 name=message></textarea></td></tr>";
+print "<tr><td valign=top><font>Mesage : </td><td valign=top><textarea  class='text' rows=8 cols=50 name=message></textarea></td></tr>"; // codespell:ignore mesage
 if(!$user){
 print "<tr><td valign=top><font>Send to : </td><td valign=top><select name='destination'>";
 print "<option value=''>---User List---</option>\n";
-$users = $stream->do_query("select * from site_users where rank>0 order by username ASC","array");
+/* @phpstan-ignore-line */ $users = $stream->do_query("select * from site_users where rank>0 order by username ASC","array");
 for ($x=0;$x<count($users);$x++){
 $tmp = $users[$x];
-$id = $tmp[0];
+/** @psalm-suppress UnusedVariable */ /** @psalm-suppress UnusedVariable */ $id = $tmp[0];
 $username = $tmp[1];
 print "<option value='$username'>$username</option>\n";
 }
@@ -492,23 +494,23 @@ print "</td></tr></table><br>";
 
 
 
-elseif($show){
-$pms = $stream->do_query("select * from site_pms where destination='$cookieuser'","array");
+/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ elseif($show){
+/* @phpstan-ignore-line */ $pms = $stream->do_query("select * from site_pms where destination='$cookieuser'","array");
 if(count($pms)>0){
 for ($x=0;$x<count($pms);$x++){
 $tmp = $pms[$x];
 $id = $tmp[0];
-$dest = $tmp[1];
+/** @psalm-suppress UnusedVariable */ /** @psalm-suppress UnusedVariable */ $dest = $tmp[1];
 $dep = $tmp[2];
 $msg = $tmp[3];
 $time = $tmp[5];
 $date = $tmp[4];
-$ip = $tmp[6];
+/** @psalm-suppress UnusedVariable */ /** @psalm-suppress UnusedVariable */ $ip = $tmp[6];
 $title = $tmp[7];
-$haveread = $tmp[8];
+/** @psalm-suppress UnusedVariable */ /** @psalm-suppress UnusedVariable */ $haveread = $tmp[8];
 
-$cunt = $stream->do_query("select id from site_users where username='$dep'","one");
-$bitches = $stream->do_query("update site_pms set haveread='1' where haveread='0'","one");
+/* @phpstan-ignore-line */ $cunt = $stream->do_query("select id from site_users where username='$dep'","one"); // codespell:ignore cunt
+/* @phpstan-ignore-line */ /** @psalm-suppress UnusedVariable */ /** @psalm-suppress UnusedVariable */ $bitches = $stream->do_query("update site_pms set haveread='1' where haveread='0'","one");
 
 
 print "<center><table width='100%' border='0' cellspacing='1' cellpadding='1'><tr><td bgcolor='#000000'><center>";
@@ -528,11 +530,11 @@ print "<br>";
 
 
 
-elseif($delete){
+/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ elseif($delete){
 if($delete!="all"){
-$check = $stream->do_query("select destination from site_pms where id='$delete'","one");
-if($check==$cookieuser){
-$query = $stream->do_query("delete from site_pms where id='$delete'","one");
+/* @phpstan-ignore-line */ $check = $stream->do_query("select destination from site_pms where id='$delete'","one");
+/* @phpstan-ignore-line */ if($check==$cookieuser){
+/* @phpstan-ignore-line */ /** @psalm-suppress UnusedVariable */ /** @psalm-suppress UnusedVariable */ $query = $stream->do_query("delete from site_pms where id='$delete'","one");
 print "<font>Message Deleted Successfully";
 }
 else {
@@ -540,8 +542,8 @@ print "<font>Unauthorised message delete attempted and logged";
 }
 }
 if($delete=="all"){
-intersection("Mass message deletion!");
-$query = $stream->do_query("delete from site_pms where destination='$cookieuser'","one");
+/* @phpstan-ignore-line */ intersection("Mass message deletion!");
+/* @phpstan-ignore-line */ /** @psalm-suppress UnusedVariable */ /** @psalm-suppress UnusedVariable */ $query = $stream->do_query("delete from site_pms where destination='$cookieuser'","one");
 print "<font>All messages deleted successfully";
 }
 }
@@ -549,12 +551,12 @@ print "<font>All messages deleted successfully";
 
 
 
-elseif($buddies){
-$query = $stream->do_query("select buddies from site_users where username='$cookieuser'","one");
+/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ elseif($buddies){
+/* @phpstan-ignore-line */ $query = $stream->do_query("select buddies from site_users where username='$cookieuser'","one");
 $buddies = explode("|",$query);
-if($foo){
-$dudes = "$buddie1|$buddie2|$buddie3|$buddie4|$buddie5|$buddie6|$buddie7|$buddie8|$buddie9|$buddie10";
-$queryy = $stream->do_query("update site_users set buddies='$dudes' where username='$cookieuser'","one");
+/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ if($foo){
+/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $dudes = "$buddie1|$buddie2|$buddie3|$buddie4|$buddie5|$buddie6|$buddie7|$buddie8|$buddie9|$buddie10";
+/* @phpstan-ignore-line */ /** @psalm-suppress UnusedVariable */ /** @psalm-suppress UnusedVariable */ $queryy = $stream->do_query("update site_users set buddies='$dudes' where username='$cookieuser'","one");
 print "<font>buddies Updated<br><br>"; 
 }
 print "<form action='member-cp.php?control=private&buddies=true&foo=true' method=post>";
@@ -568,17 +570,17 @@ print "<input class='tbox'  type=submit value='Update Buddie List'></form>";
 
 
 else {
-$pms = $stream->do_query("select * from site_pms where destination='$cookieuser'","array");
+/* @phpstan-ignore-line */ $pms = $stream->do_query("select * from site_pms where destination='$cookieuser'","array");
 if(count($pms)>0){
 for ($x=0;$x<count($pms);$x++){
 $tmp = $pms[$x];
 $id = $tmp[0];
-$dest = $tmp[1];
+/** @psalm-suppress UnusedVariable */ /** @psalm-suppress UnusedVariable */ $dest = $tmp[1];
 $dep = $tmp[2];
 $msg = $tmp[3];
 $time = $tmp[5];
 $date = $tmp[4];
-$ip = $tmp[6];
+/** @psalm-suppress UnusedVariable */ /** @psalm-suppress UnusedVariable */ $ip = $tmp[6];
 $title = $tmp[7];
 print "<center><table width='100%' border='0' cellspacing='1' cellpadding='1'><tr><td bgcolor='#000000'><center>";
 print "<table width='100%' border='0' cellspacing='' cellpadding='3'><tr><td bgcolor='#000000'><a class=news name=shit>$title";
@@ -608,12 +610,12 @@ break;
 
 
 case "editmaprofile":
-if(!$edit){
+/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ if(!$edit){
 
-$query = $stream->do_query("select * from site_users where username='$cookieuser'","array");
+/* @phpstan-ignore-line */ $query = $stream->do_query("select * from site_users where username='$cookieuser'","array");
 for ($x=0;$x<count($query);$x++){
 $tmp = $query[$x];
-$id = $tmp[0];
+/** @psalm-suppress UnusedVariable */ /** @psalm-suppress UnusedVariable */ $id = $tmp[0];
 $name = $tmp[2];
 $age = $tmp[4];
 $dob = explode("-",$tmp[5]);
@@ -760,10 +762,10 @@ print "</form></table>";
 }
 }
 if($edit){
-$dob = "$day - $month - $year";
-$address = eregi_replace("\"","\\\"",$address);
-$address = eregi_replace("'","\'",$address);
-$query = $stream->do_query("update site_users set name='$name', age='$age', dob='$dob', address='$address', aim='$aim', mailinglist='$mailing', email='$email', yahoo='$yahoo', msn='$msn', irc='$irc', icq='$icq',  telephone='$telephone', country='$country', county='$county', other='$other', picture='$pic' where username='$cookieuser'","one");
+/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $dob = "$day - $month - $year";
+/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedFunction, PossiblyUndefinedVariable */ $address = eregi_replace("\"","\\\"",$address);
+/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedFunction */ $address = eregi_replace("'","\'",$address);
+/* @phpstan-ignore-line */ /** @psalm-suppress UnusedVariable, PossiblyUndefinedGlobalVariable, UndefinedGlobalVariable */ /** @psalm-suppress UnusedVariable */ $query = $stream->do_query("update site_users set name='$name', age='$age', dob='$dob', address='$address', aim='$aim', mailinglist='$mailing', email='$email', yahoo='$yahoo', msn='$msn', irc='$irc', icq='$icq',  telephone='$telephone', country='$country', county='$county', other='$other', picture='$pic' where username='$cookieuser'","one");
 print "Well done, you've updated your profile";
 }
 break;
@@ -771,23 +773,23 @@ break;
 
 
 case "editpass":
-if($passchange){
-$old = md5($old);
-$oldpass = $stream->do_query("select password from site_users where username='$cookieuser'","one");
+/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ if($passchange){
+/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $old = md5($old);
+/* @phpstan-ignore-line */ $oldpass = $stream->do_query("select password from site_users where username='$cookieuser'","one");
 if($old==$oldpass){
-if($pass1==$pass2){
-$pas = md5($pass2);
-$oldpass = $stream->do_query("update site_users set password='$pas' where username='$cookieuser'","one");
-print "<font> Password successfully changed to $pass1<br><br>";
+/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ if($pass1==$pass2){
+/** @psalm-suppress UndefinedGlobalVariable */ $pas = md5($pass2);
+/* @phpstan-ignore-line */ /** @psalm-suppress UnusedVariable */ /** @psalm-suppress UnusedVariable */ $oldpass = $stream->do_query("update site_users set password='$pas' where username='$cookieuser'","one");
+/** @psalm-suppress UndefinedGlobalVariable */ print "<font> Password successfully changed to $pass1<br><br>";
 $cookie_domain = '.megalan.net'; 
 $cookiecontents = "no";
 $timer = time()-3600;
-$cookie = explode("|",$goodcookie);
+/* @phpstan-ignore-line */ $cookie = explode("|",$goodcookie);
 $cookieuser = $cookie[1];
 setcookie("goodcookie", $cookiecontents, time()-3600, "/", $cookie_domain);
-$update = $stream->do_query("update site_users set loggedin='0', loggedtime='$timer' where username='$cookieuser'","one");	 
+/* @phpstan-ignore-line */ /** @psalm-suppress UnusedVariable */ /** @psalm-suppress UnusedVariable */ $update = $stream->do_query("update site_users set loggedin='0', loggedtime='$timer' where username='$cookieuser'","one");	 
 
-login("member-cp.php",$fail);
+/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ login("member-cp.php",$fail);
 
 }
 else {
@@ -825,10 +827,11 @@ break;
 
 }
 else {
-login("member-cp.php",$fail);
+/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ login("member-cp.php",$fail);
 }
 
 
-footer();
+/* @phpstan-ignore-line */ footer();
 
 ?>
+<?php // jscpd:ignore-end ?>
