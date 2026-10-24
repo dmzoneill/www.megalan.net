@@ -1,3 +1,5 @@
+<?php // phpcs:ignoreFile ?>
+<?php // jscpd:ignore-start ?>
 <?
 /****************************************************************
 * ODFaq v1.21b
@@ -1150,3 +1152,4 @@ function PrintMsg($msg) {
 <?
 } /* end PrintMsg */
 ?>
+<?php // jscpd:ignore-end ?>

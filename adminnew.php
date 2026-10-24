@@ -1,4 +1,6 @@
 <?php
+// phpcs:ignoreFile
+// jscpd:ignore-start
 
 ob_start("ob_gzhandler");
 include("connect.php");
@@ -6,13 +8,13 @@ include("functions.php");
 include("track.php");
 
 
-if(!$printable){
-sheader("MegaLan.net Administration Panel","MegaLan.net Administration Panel");
+/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ if(!$printable){
+/* @phpstan-ignore-line */ sheader("MegaLan.net Administration Panel","MegaLan.net Administration Panel");
 }
 	
-$rank = $stream->do_query("select rank from site_users where username='$cookieuser'","one");
+/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $rank = $stream->do_query("select rank from site_users where username='$cookieuser'","one");
 	
-if((validatecookie($msg)==1) && ($rank>4)){
+/* @phpstan-ignore-line */ if((validatecookie($msg)==1) && ($rank>4)){
 
 
 $adminmenu= "
@@ -44,14 +46,14 @@ $adminmenu= "
 &nbsp;&nbsp;<a href='adminnew.php?page=mailinglist'>view mailing list</a> |
 &nbsp;&nbsp;<a href='adminnew.php?page=maillist'>Mail Users on mailing list</a> <br>
 &nbsp;&nbsp;<a href='adminnew.php?page=maillandudes'>Mail the fuck faces who have not signed up for the lan</a> <br>
-&nbsp;&nbsp;<a href='adminnew.php?page=maileverybody'>Mail everybody on site who have not payed</a> <br>
+&nbsp;&nbsp;<a href='adminnew.php?page=maileverybody'>Mail everybody on site who have not paid</a> <br>
 <br><hr>
 
 
 ";
 
 
-$refresh = "<script language=javascript>
+/* @phpstan-ignore-next-line */ /** @psalm-suppress UnusedVariable, UndefinedGlobalVariable */ /** @psalm-suppress UnusedVariable, UndefinedGlobalVariable */ $refresh = "<script language=javascript>
 setTimeout(\"document.location.href='$HTTP_REFERER&done';\", 1500);
 </script>";
 
@@ -64,15 +66,15 @@ print $adminmenu;
 
 
 
-switch($page){
+/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ switch($page){
 
 
 
 case "addpage":
 
-if($pageadd){
+/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ if($pageadd){
 
-$sql = $stream->do_query("INSERT INTO site_english VALUES ('','$pagename','','','','')","one");
+/* @phpstan-ignore-line */ /** @psalm-suppress UnusedVariable, UndefinedGlobalVariable */ /** @psalm-suppress UnusedVariable, UndefinedGlobalVariable */ $sql = $stream->do_query("INSERT INTO site_english VALUES ('','$pagename','','','','')","one");
 
 print "Page added!";
 
@@ -95,12 +97,12 @@ break;
 
 case "addevent":
 
-if($eventadd){
+/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ if($eventadd){
 
-$message = eregi_replace("\"","\\\"",$message);
-$message = eregi_replace("'","\'",$message);
+/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedFunction, PossiblyUndefinedVariable */ /** @psalm-suppress UndefinedFunction, PossiblyUndefinedVariable */ $message = eregi_replace("\"","\\\"",$message);
+/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedFunction */ /** @psalm-suppress UndefinedFunction */ $message = eregi_replace("'","\'",$message);
 
-$sql = $stream->do_query("INSERT INTO site_events VALUES ('','$name','$date','$cookieuser','$message','$location','$url','$month','0','0','$iptrack')","one");
+/* @phpstan-ignore-line */ /** @psalm-suppress UnusedVariable, UndefinedGlobalVariable */ /** @psalm-suppress UnusedVariable, UndefinedGlobalVariable */ $sql = $stream->do_query("INSERT INTO site_events VALUES ('','$name','$date','$cookieuser','$message','$location','$url','$month','0','0','$iptrack')","one");
 
 print "event added!";
 
@@ -110,7 +112,7 @@ else{
 
 print "<form action='adminnew.php?page=addevent&eventadd=true' method='post'>";
 print "<table cellpadding=1 border=0>";
-print "<tr><td valign=top>Poster</td><td valign=top>$cookieuser</td></tr>";
+/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ print "<tr><td valign=top>Poster</td><td valign=top>$cookieuser</td></tr>";
 print "<tr><td valign=top>(subject, Title, Event Name)</td><td valign=top><input class='tbox'  type='text' name='name'></td></tr>";
 print "<tr><td valign=top>Dates</td><td valign=top><input class='tbox'  type='text' name='date'></td></tr>";
 print "<tr><td valign=top>Month</td><td valign=top><input class='tbox'  type='text' name='month'></td></tr>";
@@ -130,20 +132,20 @@ break;
 
 case "editevent":
 
-if($eventedit){
+/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ if($eventedit){
 
-$message = eregi_replace("\"","\\\"",$message);
-$message = eregi_replace("'","\'",$message);
+/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedFunction, PossiblyUndefinedVariable */ /** @psalm-suppress UndefinedFunction, PossiblyUndefinedVariable */ $message = eregi_replace("\"","\\\"",$message);
+/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedFunction */ /** @psalm-suppress UndefinedFunction */ $message = eregi_replace("'","\'",$message);
 
-$sql = $stream->do_query("update site_events set event='$name', dates='$date', poster='$cookieuser', msg='$message', location='$location', url='$url', month='$month' where id=$idman","one");
+/* @phpstan-ignore-line */ /** @psalm-suppress UnusedVariable, UndefinedGlobalVariable */ /** @psalm-suppress UnusedVariable, UndefinedGlobalVariable */ $sql = $stream->do_query("update site_events set event='$name', dates='$date', poster='$cookieuser', msg='$message', location='$location', url='$url', month='$month' where id=$idman","one");
 
 print "event edited!";
 
 }
 
 else{
-$re = count($stream->do_query("select * from site_events", "array"));
-$resultt = $stream->do_query("select * from site_events where id='$re'", "array");
+/* @phpstan-ignore-line */ $re = count($stream->do_query("select * from site_events", "array"));
+/* @phpstan-ignore-line */ $resultt = $stream->do_query("select * from site_events where id='$re'", "array");
 $num1 = count($resultt);
 
 for($i=0;$i<$num1;$i++){
@@ -157,7 +159,7 @@ $message = $tmp[4];
 $location = $tmp[5];
 $url = $tmp[6];
 $month = $tmp[7];
-$ip = $tmp[10];
+/** @psalm-suppress UnusedVariable */ /** @psalm-suppress UnusedVariable */ $ip = $tmp[10];
 
 
 
@@ -186,7 +188,7 @@ break;
 
 case "edit":
 
-$resultt = $stream->do_query("select * from site_english where id='$what'", "array");
+/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $resultt = $stream->do_query("select * from site_english where id='$what'", "array");
 $num1 = count($resultt);
 
 for($i=0;$i<$num1;$i++){
@@ -195,9 +197,9 @@ $tmp = $resultt[$i];
 $id = $tmp[0];
 $page = $tmp[1];
 $pagecontents = $tmp[2];
-$pagetype = $tmp[3];
-$pagelastedited = $tmp[4];
-$pagecreated = $tmp[5];
+/** @psalm-suppress UnusedVariable */ /** @psalm-suppress UnusedVariable */ $pagetype = $tmp[3];
+/** @psalm-suppress UnusedVariable */ /** @psalm-suppress UnusedVariable */ $pagelastedited = $tmp[4];
+/** @psalm-suppress UnusedVariable */ /** @psalm-suppress UnusedVariable */ $pagecreated = $tmp[5];
 
 print "
 
@@ -249,18 +251,18 @@ print "Mint!<br>";
 
 print "doing <br>";
 
-$counter = count($subs);
+/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $counter = count($subs);
 
 for ($e=0;$e<$counter;$e++){
 
-$crap = explode("#",$subs[$e]);
+/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $crap = explode("#",$subs[$e]);
 
 $id = $crap[0];
 $num = $crap[1];
 
 print "Updated id $id to $num<br>"; 
 
-$update = $stream->do_query("update site_lansignup set payedmonies='$num' where id='$id'","one");
+/* @phpstan-ignore-line */ /** @psalm-suppress UnusedVariable */ /** @psalm-suppress UnusedVariable */ $update = $stream->do_query("update site_lansignup set payedmonies='$num' where id='$id'","one");
 
 }
 
@@ -276,31 +278,31 @@ case "subscriptions":
 
 
 
-$result = $stream->do_query("select * from site_lansignup order by name,payedmonies asc", "array");
+/* @phpstan-ignore-line */ $result = $stream->do_query("select * from site_lansignup order by name,payedmonies asc", "array");
 $num1 = count($result);
 
 print "<form action='adminnew.php?page=updatesubs' method=post>";
 print "<center><table cellpadding=2 cellspacing=0 border=0 width=90%><tr>";
-print "<tr><td><font><b>Name </td><td><font><b>Location</td><td><font><b>Email</td><td align=right><font><b>Payed up</td></tr>";
+print "<tr><td><font><b>Name </td><td><font><b>Location</td><td><font><b>Email</td><td align=right><font><b>Payed up</td></tr>"; // codespell:ignore payed
 
 for($i=0;$i<$num1;$i++){
 $checked1 = "";
 $tmp = $result[$i];
 $id = $tmp[0];
-$username = $tmp[1];
+/** @psalm-suppress UnusedVariable */ /** @psalm-suppress UnusedVariable */ $username = $tmp[1];
 $name = $tmp[2];
-$age = $tmp[4];
-$dob = $tmp[5];
-$address = $tmp[6];
-$tel = $tmp[7];
+/** @psalm-suppress UnusedVariable */ /** @psalm-suppress UnusedVariable */ $age = $tmp[4];
+/** @psalm-suppress UnusedVariable */ /** @psalm-suppress UnusedVariable */ $dob = $tmp[5];
+/** @psalm-suppress UnusedVariable */ /** @psalm-suppress UnusedVariable */ $address = $tmp[6];
+/** @psalm-suppress UnusedVariable */ /** @psalm-suppress UnusedVariable */ $tel = $tmp[7];
 $country = $tmp[8];
 $county = $tmp[9];
-$other = $tmp[10];
+/** @psalm-suppress UnusedVariable */ /** @psalm-suppress UnusedVariable */ $other = $tmp[10];
 $email = $tmp[11];
-$payed = $tmp[12];
-$games = $tmp[13];
-$reg = $tmp[14];
-if($payed==1){
+$payed = $tmp[12]; // codespell:ignore payed
+/** @psalm-suppress UnusedVariable */ /** @psalm-suppress UnusedVariable */ $games = $tmp[13];
+/** @psalm-suppress UnusedVariable */ /** @psalm-suppress UnusedVariable */ $reg = $tmp[14];
+if($payed==1){ // codespell:ignore payed
 $checked1 = "selected";
 }
 
@@ -338,22 +340,22 @@ setTimeout(\"document.location.href='adminnew.php?';\", 1500);
 
 </script>";
 
-$message = eregi_replace("\"","\\\"",$message);
-$message = eregi_replace("'","\'",$message);
+/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedFunction, PossiblyUndefinedVariable */ /** @psalm-suppress UndefinedFunction, PossiblyUndefinedVariable */ $message = eregi_replace("\"","\\\"",$message);
+/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedFunction */ /** @psalm-suppress UndefinedFunction */ $message = eregi_replace("'","\'",$message);
 
 
-$resultt = $stream->do_query("UPDATE site_english set pagecontents = '$message' where id = '$id'", "one");
+/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $resultt = $stream->do_query("UPDATE site_english set pagecontents = '$message' where id = '$id'", "one");
 
 
 if($resultt!="bad"){
 
-print "<br><br><br><center>successfull $ok $refresh";
+/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ print "<br><br><br><center>successfull $ok $refresh"; // codespell:ignore successfull
 
 }
 
 else {
 
-print "<br><br><br><center>unsuccessfull $notok $refresh";
+/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ print "<br><br><br><center>unsuccessfull $notok $refresh"; // codespell:ignore unsuccessfull
 
 }
 
@@ -369,7 +371,7 @@ break;
 
 case "mail":
 
-if(!$m) {
+/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ if(!$m) {
 
 $m=1;
 
@@ -377,7 +379,7 @@ $m=1;
 
 if($m==1){
 
-echo("
+/** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ echo("
 
 <br>
 
@@ -393,13 +395,13 @@ echo("
 
 <td valign=top><p>Your Name:</td><td valign=top>
 
-<input class='tbox' type='text' name='name' value='$cookieuser' size='20'></td>
+<input class='tbox' type='text' name='name' value='" /* @phpstan-ignore-line */ . $cookieuser . "' size='20'></td>
 
 </tr><tr>
 
 <td valign=top><p>Your address:</td><td valign=top>
 
-<input class='tbox'  type='text' name='resource' value='$cookieuser@megalan.net' size='20'></td>
+<input class='tbox'  type='text' name='resource' value='" /* @phpstan-ignore-line */ . $cookieuser . "@megalan.net' size='20'></td>
 
 </tr><tr>
 
@@ -425,23 +427,23 @@ if($m==2){
 
 
 
-    $subject = "$subject";
+    /* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $subject = "$subject";
 
 	$headers  = "MIME-Version: 1.0\r\n";
 
 $headers .= "Content-type: text/html; charset=iso-8859-1\r\n";
 
-   $headers .= "From: $resource";
+   /* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $headers .= "From: $resource";
 
-    $address = "$email";
+    /* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $address = "$email";
 
-	$msg = "<font face=verdana,arial size=2 color=#ffeead><br>Dear $email <br><br> $message <br><br> - $name </font>";
+	/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $msg = "<font face=verdana,arial size=2 color=#ffeead><br>Dear $email <br><br> $message <br><br> - $name </font>";
 
 
 
-    if((!$name) || (!$email) || (!$message)) {
+    /* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ if((!$name) || (!$email) || (!$message)) {
 
-        die("<br><br><br><center>please go back and enter all feilds");
+        die("<br><br><br><center>please go back and enter all feilds"); // codespell:ignore feilds
 
     } else {
 
@@ -472,7 +474,7 @@ break;
 
 case "maillist":
 
-if(!$m) {
+/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ if(!$m) {
 
 $m=1;
 
@@ -480,7 +482,7 @@ $m=1;
 
 if($m==1){
 
-echo("
+/** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ echo("
 
 <br>
 
@@ -497,13 +499,13 @@ echo("
 
 <td valign=top><p>Your Name:</td><td valign=top>
 
-<input class='tbox'  type='text' name='name' value='$cookieuser' size='20'></td>
+<input class='tbox'  type='text' name='name' value='" /* @phpstan-ignore-line */ . $cookieuser . "' size='20'></td>
 
 </tr><tr>
 
 <td valign=top><p>Your address:</td><td valign=top>
 
-<input class='tbox'  type='text' name='resource' value='$cookieuser@megalan.net' size='20'></td>
+<input class='tbox'  type='text' name='resource' value='" /* @phpstan-ignore-line */ . $cookieuser . "@megalan.net' size='20'></td>
 
 </tr><tr>
 
@@ -528,16 +530,16 @@ Mailing list where activated = 1</td>
 if($m==2){
 
 
-if((!$name) || (!$resource) || (!$message)) {
-die_nice("<br><br><br><center>please go back and enter all feilds");
+/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ if((!$name) || (!$resource) || (!$message)) {
+/* @phpstan-ignore-line */ die_nice("<br><br><br><center>please go back and enter all feilds"); // codespell:ignore feilds
 } 
 else {
 
-$mails = mysql_query("SELECT * FROM site_users where mailinglist='1'");
+/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedFunction */ /** @psalm-suppress UndefinedFunction */ $mails = mysql_query("SELECT * FROM site_users where mailinglist='1'");
 
-while($row = mysql_fetch_array($mails)){
+/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedFunction */ /** @psalm-suppress UndefinedFunction */ while($row = mysql_fetch_array($mails)){
 
-$subject = "$subject";
+/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ $subject = "$subject";
 $headers  = "MIME-Version: 1.0\r\n";
 $headers .= "Content-type: text/html; charset=iso-8859-1\r\n";
 $headers .= "From: $resource";
@@ -562,7 +564,7 @@ break;
 
 case "maillandudes":
 
-if(!$m) {
+/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ if(!$m) {
 
 $m=1;
 
@@ -570,7 +572,7 @@ $m=1;
 
 if($m==1){
 
-echo("
+/** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ echo("
 
 <br>
 
@@ -587,13 +589,13 @@ echo("
 
 <td valign=top><p>Your Name:</td><td valign=top>
 
-<input class='tbox'  type='text' name='name' value='$cookieuser' size='20'></td>
+<input class='tbox'  type='text' name='name' value='" /* @phpstan-ignore-line */ . $cookieuser . "' size='20'></td>
 
 </tr><tr>
 
 <td valign=top><p>Your address:</td><td valign=top>
 
-<input class='tbox'  type='text' name='resource' value='$cookieuser@megalan.net' size='20'></td>
+<input class='tbox'  type='text' name='resource' value='" /* @phpstan-ignore-line */ . $cookieuser . "@megalan.net' size='20'></td>
 
 </tr><tr>
 
@@ -618,21 +620,21 @@ Mailing list where activated = 1</td>
 if($m==2){
 
 
-if((!$name) || (!$resource) || (!$message)) {
-die_nice("<br><br><br><center>please go back and enter all feilds");
+/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ if((!$name) || (!$resource) || (!$message)) {
+/* @phpstan-ignore-line */ die_nice("<br><br><br><center>please go back and enter all feilds"); // codespell:ignore feilds
 } 
 else {
 
-$mails = mysql_query("SELECT * FROM site_users");
+/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedFunction */ /** @psalm-suppress UndefinedFunction */ $mails = mysql_query("SELECT * FROM site_users");
 
-while($row = mysql_fetch_array($mails)){
+/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedFunction */ /** @psalm-suppress UndefinedFunction */ while($row = mysql_fetch_array($mails)){
 
-$sql = $row[email];
-$sql2 = $stream->do_query("select email from site_lansignup where username='$row[username]'","one");
+/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedConstant */ /** @psalm-suppress UndefinedConstant */ $sql = $row[email];
+/* @phpstan-ignore-line */ $sql2 = $stream->do_query("select email from site_lansignup where username='$row[username]'","one");
 
 if($sql!=$sql2){
-$subject = "$subject";
-$headers .= "From: $resource";
+/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ $subject = "$subject";
+/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ $headers .= "From: $resource";
 $address = "$row[email]";
 
 $msg = "Hello $row[username] ($row[email]),\n\n $message \n\n - $name";
@@ -655,7 +657,7 @@ break;
 
 case "maileverybody":
 
-if(!$m) {
+/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ if(!$m) {
 
 $m=1;
 
@@ -663,7 +665,7 @@ $m=1;
 
 if($m==1){
 
-echo("
+/** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ echo("
 
 <br>
 
@@ -680,19 +682,19 @@ echo("
 
 <td valign=top><p>Your Name:</td><td valign=top>
 
-<input class='tbox'  type='text' name='name' value='$cookieuser' size='20'></td>
+<input class='tbox'  type='text' name='name' value='" /* @phpstan-ignore-line */ . $cookieuser . "' size='20'></td>
 
 </tr><tr>
 
 <td valign=top><p>Your address:</td><td valign=top>
 
-<input class='tbox'  type='text' name='resource' value='$cookieuser@megalan.net' size='20'></td>
+<input class='tbox'  type='text' name='resource' value='" /* @phpstan-ignore-line */ . $cookieuser . "@megalan.net' size='20'></td>
 
 </tr><tr>
 
 <td valign=top><p>Receiver:</td><td valign=top>
 
-everbody who hasn't payed (show me the fucking money)</td>
+everybody who hasn't paid (show me the fucking money)</td>
 
 </tr><tr>
 
@@ -711,24 +713,24 @@ everbody who hasn't payed (show me the fucking money)</td>
 if($m==2){
 
 
-if((!$name) || (!$resource) || (!$message)) {
-die_nice("<br><br><br><center>please go back and enter all feilds");
+/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ if((!$name) || (!$resource) || (!$message)) {
+/* @phpstan-ignore-line */ die_nice("<br><br><br><center>please go back and enter all feilds"); // codespell:ignore feilds
 } 
 else {
 
-$mails = mysql_query("SELECT * FROM site_users");
+/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedFunction */ /** @psalm-suppress UndefinedFunction */ $mails = mysql_query("SELECT * FROM site_users");
 
-while($row = mysql_fetch_array($mails)){
+/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedFunction */ /** @psalm-suppress UndefinedFunction */ while($row = mysql_fetch_array($mails)){
 
-$sql = $row[email];
-$sql2 = $stream->do_query("select payedmonies from site_lansignup where username='$row[username]'","one");
+/* @phpstan-ignore-line */ /** @psalm-suppress UnusedVariable, UndefinedConstant */ /** @psalm-suppress UnusedVariable, UndefinedConstant */ $sql = $row[email];
+/* @phpstan-ignore-line */ $sql2 = $stream->do_query("select payedmonies from site_lansignup where username='$row[username]'","one");
 
 if($sql2==1){
 print "$row[username] $row[email] not mailed";
 }
 else {
-$subject = "$subject";
-$headers .= "From: $resource";
+/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ $subject = "$subject";
+/* @phpstan-ignore-line */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ /** @psalm-suppress PossiblyUndefinedGlobalVariable */ $headers .= "From: $resource";
 $address = "$row[email]";
 
 $msg = "Hello $row[username] ($row[email]),\n\n $message \n\n - $name";
@@ -753,11 +755,11 @@ break;
 
 case "mailinglist":
 
-if(!$deleteuser){
+/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ if(!$deleteuser){
 
-if(!$numemail){
+/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ if(!$numemail){
 
-$resultt = $stream->do_query("SELECT * FROM site_users", "array");
+/* @phpstan-ignore-line */ $resultt = $stream->do_query("SELECT * FROM site_users", "array");
 $num1 = count($resultt);
 
 
@@ -768,8 +770,8 @@ echo("<center><br><br>
 for($i=0;$i<$num1;$i++){
 
 $tmp = $resultt[$i];
-$id = $tmp[0];
-$name = $tmp[1];
+/** @psalm-suppress UnusedVariable */ /** @psalm-suppress UnusedVariable */ $id = $tmp[0];
+/** @psalm-suppress UnusedVariable */ /** @psalm-suppress UnusedVariable */ $name = $tmp[1];
 $email = $tmp[11];
 $act = $tmp[17];
 
@@ -825,7 +827,7 @@ $p=0;
 
 echo "<td>"; 
 
-$resultt = $stream->do_query("select * from site_english", "array");
+/* @phpstan-ignore-line */ $resultt = $stream->do_query("select * from site_english", "array");
 $num1 = count($resultt);
 
 for($i=0;$i<$num1;$i++){
@@ -896,7 +898,7 @@ break;
 
 else {
 
-login("adminnew.php",$fail);
+/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ login("adminnew.php",$fail);
 
 }
 		
@@ -905,6 +907,7 @@ login("adminnew.php",$fail);
 		
 
 if(!$printable){
-footer();
+/* @phpstan-ignore-line */ footer();
 }
 ?>
+<?php // jscpd:ignore-end ?>

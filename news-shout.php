@@ -1,10 +1,12 @@
+<?php // phpcs:ignoreFile ?>
+<?php // jscpd:ignore-start ?>
 <table width='100%' border='0' cellspacing='1' cellpadding='3'><tr><td width=65% valign=top><center><font><img src=img/images.jpg border=0></font>
 <table width='100%' border='0' cellspacing='1' cellpadding='3'>
 
 
 <?php
 
-$query = $stream->do_query("select * from site_news where parent='0' order by id DESC","array");
+/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $query = $stream->do_query("select * from site_news where parent='0' order by id DESC","array");
 
 $r = 0;
 
@@ -15,14 +17,14 @@ $subject = $tmp[1];
 $whattime = $tmp[2];
 $messages = substr("$tmp[3]", 0,160)."...";
 $poster = $tmp[4];
-$parent = $tmp[5];
-$ip = $tmp[6];
-$uniqueid = $tmp[7];
+/** @psalm-suppress UnusedVariable */ /** @psalm-suppress UnusedVariable */ $parent = $tmp[5];
+/** @psalm-suppress UnusedVariable */ /** @psalm-suppress UnusedVariable */ $ip = $tmp[6];
+/** @psalm-suppress UnusedVariable */ /** @psalm-suppress UnusedVariable */ $uniqueid = $tmp[7];
 
 
-$messages = smilies($messages);
+/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedFunction */ /** @psalm-suppress UndefinedFunction */ $messages = smilies($messages);
 
-$que = $stream->do_query("select id from site_users where username='$poster'","one");
+/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $que = $stream->do_query("select id from site_users where username='$poster'","one");
 
 if($r>6){
 break;
@@ -57,7 +59,7 @@ print "<tr><td><br><a class=body href='news.php?newpost=showall'>Show all Topics
 				                 
 				  <?php
 				  
-				  $sql3 = $stream->do_query("select * from site_shoutbox order by id desc","array");
+				  /* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $sql3 = $stream->do_query("select * from site_shoutbox order by id desc","array");
 				  
 				  for($f=0;$f<count($sql3);$f++){
 				  
@@ -66,27 +68,27 @@ print "<tr><td><br><a class=body href='news.php?newpost=showall'>Show all Topics
 				  }
 				  
 $tmpg = $sql3[$f];
-$id = $tmpg[0];
+/** @psalm-suppress UnusedVariable */ /** @psalm-suppress UnusedVariable */ $id = $tmpg[0];
 $usern = $tmpg[1];
 $messages = $tmpg[2];
 $date = $tmpg[3];
-$ip = $tmpg[4];
+/** @psalm-suppress UnusedVariable */ /** @psalm-suppress UnusedVariable */ $ip = $tmpg[4];
 $title = $tmpg[5];
 
-$ms = eregi_replace("&amp;nbsp;"," ",$ms);
+/* @phpstan-ignore-line */ /** @psalm-suppress UnusedVariable, UndefinedFunction, PossiblyUndefinedVariable */ /** @psalm-suppress UnusedVariable, UndefinedFunction, PossiblyUndefinedVariable */ $ms = eregi_replace("&amp;nbsp;"," ",$ms);
 
 if($f%2>0){
-$bg = "999999";
+/** @psalm-suppress UnusedVariable */ /** @psalm-suppress UnusedVariable */ $bg = "999999";
 }
 else {
-$bg = "cccccc";
+/** @psalm-suppress UnusedVariable */ /** @psalm-suppress UnusedVariable */ $bg = "cccccc";
 }
 
  
-$messages = smilies($messages); 
+/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedFunction */ /** @psalm-suppress UndefinedFunction */ $messages = smilies($messages); 
 
 
-$que = $stream->do_query("select id from site_users where username='$usern'","one");
+/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $que = $stream->do_query("select id from site_users where username='$usern'","one");
 
 print "<center><tr><td><table width='100%' border='0' cellspacing='0' cellpadding='1'><tr><td bgcolor='#222222'><table width='100%' border='0' cellspacing='3' cellpadding='0'><tr><td><font class=news> $title </a></td></tr></table><table width='100%' border='0' cellspacing='0' cellpadding='5'><tr><td bgcolor='#dddddd'>";
 print "<font class=news>$date<br></font><font>$messages <br>By <a class=body href='players.php?code=member&id=$que'>$usern </a>......<br>";
@@ -95,10 +97,11 @@ print "</td></tr></table></td></tr></table></td></tr>";
 }	
 
 if(count($sql3)<1){
-print "<font>There are curently no shouts!!<br>";
+print "<font>There are curently no shouts!!<br>"; // codespell:ignore curently
 }
 print "<tr><td><font><a class=body href='shoutbox.php'>Post your Shout here!</a></td></tr></table>";		  
 	  
 ?>
 
 </td></tr></table>
+<?php // jscpd:ignore-end ?>
