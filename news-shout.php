@@ -6,7 +6,7 @@
 
 <?php
 
-/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $query = $stream->do_query("select * from site_news where parent='0' order by id DESC","array");
+/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $query = $stream->do_query("select * from site_news where parent='0' order by id DESC","array");
 
 $r = 0;
 
@@ -22,9 +22,9 @@ $poster = $tmp[4];
 /** @psalm-suppress UnusedVariable */ /** @psalm-suppress UnusedVariable */ $uniqueid = $tmp[7];
 
 
-/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedFunction */ $messages = smilies($messages);
+/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedFunction */ /** @psalm-suppress UndefinedFunction */ $messages = smilies($messages);
 
-/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $que = $stream->do_query("select id from site_users where username='$poster'","one");
+/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $que = $stream->do_query("select id from site_users where username='$poster'","one");
 
 if($r>6){
 break;
@@ -59,7 +59,7 @@ print "<tr><td><br><a class=body href='news.php?newpost=showall'>Show all Topics
 				                 
 				  <?php
 				  
-				  /* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $sql3 = $stream->do_query("select * from site_shoutbox order by id desc","array");
+				  /* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $sql3 = $stream->do_query("select * from site_shoutbox order by id desc","array");
 				  
 				  for($f=0;$f<count($sql3);$f++){
 				  
@@ -75,7 +75,7 @@ $date = $tmpg[3];
 /** @psalm-suppress UnusedVariable */ /** @psalm-suppress UnusedVariable */ $ip = $tmpg[4];
 $title = $tmpg[5];
 
-/* @phpstan-ignore-line */ /** @psalm-suppress UnusedVariable, UndefinedFunction, PossiblyUndefinedVariable */ /** @psalm-suppress UnusedVariable */ $ms = eregi_replace("&amp;nbsp;"," ",$ms);
+/* @phpstan-ignore-line */ /** @psalm-suppress UnusedVariable, UndefinedFunction, PossiblyUndefinedVariable */ /** @psalm-suppress UnusedVariable, UndefinedFunction, PossiblyUndefinedVariable */ $ms = eregi_replace("&amp;nbsp;"," ",$ms);
 
 if($f%2>0){
 /** @psalm-suppress UnusedVariable */ /** @psalm-suppress UnusedVariable */ $bg = "999999";
@@ -85,10 +85,10 @@ else {
 }
 
  
-/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedFunction */ $messages = smilies($messages); 
+/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedFunction */ /** @psalm-suppress UndefinedFunction */ $messages = smilies($messages); 
 
 
-/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ $que = $stream->do_query("select id from site_users where username='$usern'","one");
+/* @phpstan-ignore-line */ /** @psalm-suppress UndefinedGlobalVariable */ /** @psalm-suppress UndefinedGlobalVariable */ $que = $stream->do_query("select id from site_users where username='$usern'","one");
 
 print "<center><tr><td><table width='100%' border='0' cellspacing='0' cellpadding='1'><tr><td bgcolor='#222222'><table width='100%' border='0' cellspacing='3' cellpadding='0'><tr><td><font class=news> $title </a></td></tr></table><table width='100%' border='0' cellspacing='0' cellpadding='5'><tr><td bgcolor='#dddddd'>";
 print "<font class=news>$date<br></font><font>$messages <br>By <a class=body href='players.php?code=member&id=$que'>$usern </a>......<br>";
