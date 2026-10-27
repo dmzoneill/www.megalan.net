@@ -1,5 +1,9 @@
 # megalan.net
 
+<p align="center">
+  <img src=".github/logo.png" alt="www.megalan.net logo" width="128" />
+</p>
+
 The site for MegaLAN, a LAN gaming event.
 
 ## Contents
